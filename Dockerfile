@@ -26,3 +26,5 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 RUN useradd -m -s /bin/bash user && echo "user:docker" | chpasswd && echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 WORKDIR /home/user
 USER user
+
+RUN echo 'if ! [ -e "$HOME/.updated-simudo" ] && [ y = "$UPDATE_SIMUDO_FROM_PIP" ]; then pip3 install --user --upgrade simudo && touch "$HOME/.updated-simudo"; fi' >> ~/.bashrc
