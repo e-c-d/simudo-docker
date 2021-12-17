@@ -14,8 +14,8 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
         build-essential zip unzip parallel cython3 \
         python3-{argh,atomicwrites,cached-property,dolfin,future,h5py} \
         python3-{matplotlib,meshio,pandas,petsc4py,pint,pprofile,pytest} \
-        python3-{scipy,sortedcontainers,sphinx,sphinx-rtd-theme,tabulate} \
-        python3-{tqdm,yaml,yamlordereddictloader} \
+        python3-{scipy,sortedcontainers,sphinx,sphinx-rtd-theme,tables} \
+        python3-{tabulate,tqdm,yaml,yamlordereddictloader} \
         optipng poppler-utils meshio-tools gmsh" && \
     apt-get clean && \
     pip3 install simudo && \
