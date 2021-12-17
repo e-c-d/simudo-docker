@@ -1,14 +1,21 @@
 FROM ubuntu:focal
 USER root
 
-# Uncomment to use local apt-cacher-ng instance. If you don't what that is, don't worry about it.
-#RUN echo 'Acquire::http { Proxy "http://172.17.0.1:3142"; };' >> /etc/apt/apt.conf.d/01proxy
+# remove mmdebstrap apt proxy configuration if any
+RUN rm -f /etc/apt/apt.conf.d/99mmdebstrap
+
+# install apt proxy configuration script
+COPY configure-apt-proxy.sh /usr/local/sbin/
+
+# use this snippet with `buildah bud --pull-never --build-arg APT_HTTP_PROXY=http://10.0.2.2:3142 --net=private`
+ARG APT_HTTP_PROXY=
+RUN configure-apt-proxy.sh
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get -qq update && \
     apt-get -y upgrade && \
     bash -c "apt-get install -y --no-install-recommends \
-        sudo \
+        sudo iproute2 \
         python3-dev python3-pip \
         jupyter jupyter-notebook jupyter-nbconvert python3-ipykernel \
         build-essential zip unzip parallel cython3 \
@@ -20,6 +27,9 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get clean && \
     pip3 install simudo && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# reset apt proxy
+RUN env APT_HTTP_PROXY= configure-apt-proxy.sh
 
 # Create user.
 # Let user run anything they want as root inside the container.
