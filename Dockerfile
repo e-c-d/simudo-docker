@@ -7,7 +7,8 @@ RUN rm -f /etc/apt/apt.conf.d/99mmdebstrap
 # install apt proxy configuration script
 COPY configure-apt-proxy.sh /usr/local/sbin/
 
-# use this snippet with `buildah bud --pull-never --build-arg APT_HTTP_PROXY=http://10.0.2.2:3142 --net=private`
+# setup apt proxy
+# $ buildah bud --pull-never --build-arg APT_HTTP_PROXY=http://10.0.2.2:3142 --net=private -t docker.io/ecdee/simudo:20211217 --format docker
 ARG APT_HTTP_PROXY=
 RUN configure-apt-proxy.sh
 
