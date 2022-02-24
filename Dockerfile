@@ -16,7 +16,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get -qq update && \
     apt-get -y upgrade && \
     bash -c "apt-get install -y --no-install-recommends \
-        sudo iproute2 \
+        sudo iproute2 fossil nano \
         python3-dev python3-pip \
         jupyter jupyter-notebook jupyter-nbconvert python3-ipykernel \
         build-essential zip unzip parallel cython3 \
