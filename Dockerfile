@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:impish
 USER root
 
 # remove mmdebstrap apt proxy configuration if any
