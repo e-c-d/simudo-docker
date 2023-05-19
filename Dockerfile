@@ -1,4 +1,4 @@
-FROM ubuntu:impish
+FROM ubuntu:jammy
 USER root
 
 # remove mmdebstrap apt proxy configuration if any
