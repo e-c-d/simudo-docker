@@ -1,4 +1,4 @@
-FROM ubuntu:jammy
+FROM ubuntu:mantic
 USER root
 
 # remove mmdebstrap apt proxy configuration if any
@@ -26,7 +26,8 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
         python3-{tabulate,tqdm,yaml,yamlordereddictloader} \
         optipng poppler-utils meshio-tools gmsh" && \
     apt-get clean && \
-    pip3 install simudo && \
+    pip3 install --break-system-packages suffix_trees generic_escape mpl_render && \
+    pip3 install --break-system-packages --no-deps simudo && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # reset apt proxy
@@ -38,4 +39,4 @@ RUN useradd -m -s /bin/bash user && echo "user:docker" | chpasswd && echo "user 
 WORKDIR /home/user
 USER user
 
-RUN echo 'if ! [ -e "$HOME/.updated-simudo" ] && [ y = "$UPDATE_SIMUDO_FROM_PIP" ]; then pip3 install --user --upgrade simudo && touch "$HOME/.updated-simudo"; fi' >> ~/.bashrc
+RUN echo 'if ! [ -e "$HOME/.updated-simudo" ] && [ y = "$UPDATE_SIMUDO_FROM_PIP" ]; then pip3 install --break-system-packages --user --upgrade simudo && touch "$HOME/.updated-simudo"; fi' >> ~/.bashrc
