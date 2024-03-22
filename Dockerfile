@@ -21,7 +21,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
         sudo iproute2 fossil nano less hashdeep wget \
         python3-dev python3-pip \
         jupyter jupyter-notebook jupyter-nbconvert python3-ipykernel \
-        build-essential zip unzip parallel cython3 \
+        build-essential zip unzip parallel cython3 ipython3 \
         python3-{argh,atomicwrites,cached-property,dolfin,future,h5py} \
         python3-{matplotlib,meshio,pandas,petsc4py,pint,pprofile,pygmsh,pytest} \
         python3-{scipy,sortedcontainers,sphinx,sphinx-rtd-theme,tables} \
