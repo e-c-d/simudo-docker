@@ -39,7 +39,7 @@ RUN cd /tmp && mkdir download && cd download && \
     dl_pypi source mpl_render 0.2.3.tar.gz && \
     dl_pypi source suffix-trees 0.3.0.tar.gz && \
     dl_pypi py2.py3 ipympl 0.9.3-py2.py3-none-any.whl && \
-    dl_pypi source simudo 0.6.5.0.tar.gz && \
+    dl_pypi source simudo 0.7.0.0a1.tar.gz && \
     hashdeep -alrvvk /tmp/pip.hashdeep . && \
     pip3 install --no-index --no-build-isolation --break-system-packages --no-deps ./*
 
